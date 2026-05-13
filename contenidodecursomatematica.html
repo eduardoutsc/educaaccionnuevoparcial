@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subcontenidos PRO</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.subtitle{
+  text-align:center;
+  opacity:0.7;
+  margin-bottom:30px;
+}
+
+/* 🔥 NUEVA SECCIÓN BONITA */
+.section {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.section h2{
+  text-align:center;
+  color:#4ade80;
+}
+
+/* BENEFICIOS */
+.benefits{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  margin-top:15px;
+}
+
+.benefit{
+  background: rgba(0,255,200,0.1);
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+}
+
+/* VIDEO */
+.video-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  position: relative;
+}
+
+.video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(0,255,200,0.5);
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #22d3ee;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.done {
+  background: #4ade80;
+}
+
+/* PROGRESO */
+.progress-box {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.bar {
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+}
+
+/* 🎮 JUEGO */
+.game-box{
+  text-align:center;
+}
+
+#pregunta{
+  font-size:22px;
+  margin:15px;
+}
+
+#respuesta{
+  padding:10px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+}
+
+#resultado{
+  margin-top:10px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Bienvenido al curso de Matematicas </h1>
+  <p class="subtitle">Completa los videos para desbloquear tu progreso</p>
+
+  <!-- 🔥 BENEFICIOS -->
+  <div class="section">
+    <h2>💡 Beneficios de tomar cursos</h2>
+    <div class="benefits">
+      <div class="benefit">📚 Aprendes nuevas habilidades</div>
+      <div class="benefit">🚀 Mejora tus oportunidades laborales</div>
+      <div class="benefit">🧠 Ejercitas tu mente</div>
+      <div class="benefit">💰 Puedes ganar más dinero</div>
+      <div class="benefit">🎯 Cumples tus metas personales</div>
+    </div>
+  </div>
+
+  <!-- VIDEOS (NO TOCADOS) -->
+  <div class="video-card">
+    <div class="badge">Video 1</div>
+    <video id="v1" controls>
+      <source src="matevi.mp4" type="video/mp4">
+    </video>
+    <button id="b0" onclick="mark(0)">Completar</button>
+  </div>
+
+  <div class="video-card">
+    <div class="badge">Video 2</div>
+    <video id="v2" controls>
+      <source src="matevi.mp4" type="video/mp4">
+    </video>
+    <button id="b1" onclick="mark(1)">Completar</button>
+  </div>
+
+  <div class="video-card">
+    <div class="badge">Video 3</div>
+    <video id="v3" controls>
+      <source src="matevi.mp4" type="video/mp4">
+    </video>
+    <button id="b2" onclick="mark(2)">Completar</button>
+  </div>
+
+  <!-- 🎮 JUEGO -->
+  <div class="section game-box">
+    <h2>🧠 Mini Juego de Matemáticas</h2>
+    <div id="pregunta"></div>
+    <input type="number" id="respuesta" placeholder="Tu respuesta">
+    <button onclick="verificar()">Responder</button>
+    <div id="resultado"></div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div id="box" class="progress-box">
+    <h2>Progreso</h2>
+    <p id="txt">0 / 3 completados</p>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+  </div>
+
+</div>
+
+<script>
+let done = [false,false,false];
+
+function mark(i){
+  done[i] = true;
+  document.getElementById('b'+i).classList.add('done');
+  document.getElementById('b'+i).innerText = '✔ Completado';
+  update();
+}
+
+function update(){
+  let c = done.filter(x=>x).length;
+  document.getElementById('txt').innerText = c + ' / 3 completados';
+
+  let percent = (c/3)*100;
+  document.getElementById('fill').style.width = percent + '%';
+
+  if(c===3){
+    document.getElementById('txt').innerText = '🎉 CURSO COMPLETADO';
+
+    const btn = document.createElement('button');
+    btn.innerText = '📄 Descargar Reconocimienot';
+    btn.onclick = descargarDiploma;
+    document.getElementById('box').appendChild(btn);
+  }
+}
+
+function descargarDiploma(){
+  const contenido = `DIPLOMA DE FINALIZACIÓN`;
+  const blob = new Blob([contenido], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'diploma.pdf';
+  a.click();
+}
+
+/* 🎮 JUEGO MATH */
+let a,b;
+
+function nuevaPregunta(){
+  a = Math.floor(Math.random()*10)+1;
+  b = Math.floor(Math.random()*10)+1;
+  document.getElementById("pregunta").innerText = `${a} x ${b} = ?`;
+}
+
+function verificar(){
+  let r = document.getElementById("respuesta").value;
+  if(parseInt(r) === a*b){
+    document.getElementById("resultado").innerText = "🔥 Correcto!";
+  } else {
+    document.getElementById("resultado").innerText = "❌ Intenta otra vez";
+  }
+  nuevaPregunta();
+}
+
+nuevaPregunta();
+</script>
+
+</body>
+</html>

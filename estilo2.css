@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --accent-green: #00f2fe;
+    --neon-green: #4ade80;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-light: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--primary-gradient);
+    background-attachment: fixed;
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR PROFESIONAL --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    background: rgba(15, 32, 39, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    background: linear-gradient(to right, #4ade80, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: 0.3s;
+    opacity: 0.8;
+}
+
+.navbar nav a:hover {
+    opacity: 1;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+/* --- HERO CON ANIMACIÓN DE LETRAS --- */
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    max-width: 900px;
+    /* Efecto de caída aplicado al bloque, o podrías usar JS para separar letras */
+    animation: dropIn 1.2s cubic-bezier(0.24, 1.21, 0.38, 0.98) forwards;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+    margin-bottom: 2.5rem;
+}
+
+/* --- BOTÓN NEÓN --- */
+.btn-primary {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    background: var(--neon-green);
+    color: #0f2027;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(74, 222, 128, 0.5);
+}
+
+/* --- TARJETAS MÓDULOS (GLASSMORPHISM) --- */
+.modules {
+    padding: 100px 10%;
+}
+
+.modules h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-10px);
+    border-color: var(--neon-green);
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--neon-green);
+}
+
+/* --- ANIMACIONES --- */
+@keyframes dropIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+    padding: 3rem;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+
+/*f*/
+
+/* --- CONFIGURACIÓN GLOBAL --- */
+:root {
+    --neon-accent: #4ade80;
+    --blue-glow: #00f2fe;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-muted: #a1a1aa;
+}
+
+/* --- SECCIÓN DE PROPUESTA (Info Section) --- */
+.info-section {
+    padding: 100px 10%;
+    background: radial-gradient(circle at top right, rgba(74, 222, 128, 0.05), transparent);
+}
+
+.info-section h2 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(to right, #fff, var(--neon-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.grid-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.info-text {
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s ease;
+}
+
+.info-text:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue-glow);
+}
+
+.info-text h3 {
+    color: var(--neon-accent);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.info-text p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* --- SECCIÓN DE IMPACTO (Glass Container) --- */
+.impact-section {
+    padding: 80px 10%;
+}
+
+.glass-container {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 60px;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.stat-item {
+    padding: 20px;
+}
+
+.stat-item h4 {
+    font-size: 1.8rem;
+    color: var(--blue-glow);
+    margin-bottom: 10px;
+}
+
+.stat-item p {
+    font-weight: 300;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* --- FOOTER PROFESIONAL --- */
+footer {
+    background: #0a1114;
+    padding: 60px 10% 20px;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.3));
+}
+
+.footer-dev {
+    text-align: center;
+    border-left: 2px solid var(--neon-accent);
+    padding-left: 20px;
+}
+
+.footer-dev p {
+    margin: 5px 0;
+    color: var(--text-light);
+}
+
+.copyright {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #555;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+    width: 100%;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .grid-info, .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-section h2 {
+        font-size: 2rem;
+    }
+}
+
+
+        /* Estilos del chat lateral */
+        .chat-panel {
+            position: fixed;
+            top: 0;
+            right: -350px; /* oculto inicialmente */
+            width: 350px;
+            height: 100%;
+            background: #f5f5f5;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            z-index: 999;
+        }
+        .chat-panel.open {
+            right: 0;
+        }
+        .chat-header {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chat-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .chat-footer {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+        .chat-footer input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+        }
+        .chat-footer button {
+            padding: 10px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+  
+        /* 🔥 SECCIÓN CATÁLOGO */
+.catalogo-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f0fdf4, #ecfeff);
+    text-align: center;
+}
+
+.catalogo-title {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    color: #065f46;
+}
+
+/* CONTENEDOR */
+.catalogo-container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* TARJETAS */
+.curso-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* HOVER PRO */
+.curso-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* IMAGEN */
+.curso-card img {
+    width: 180px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* INFO */
+.curso-info {
+    text-align: left;
+}
+
+.curso-info h3 {
+    margin: 0;
+    color: #0f766e;
+}
+
+.curso-info p {
+    margin: 10px 0;
+    color: #555;
+}
+
+/* BOTÓN */
+.curso-info button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #0f766e;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.curso-info button:hover {
+    background: #4ade80;
+    color: black;
+}
+
+/* CURSO ESPECIAL */
+.curso-card.especial {
+    border-left: 6px solid #4ade80;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .curso-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .curso-info {
+        text-align: center;
+    }
+}
+
+/** esta es la ia */
+
+
+/* 🔥 MENSAJES BASE */
+
+/* 💬 MENSAJES GENERALES */
+.msg{
+    padding:12px 16px;
+    border-radius:20px;
+    margin:8px;
+    max-width:75%;
+    font-size:15px;
+    line-height:1.6;
+    animation: aparecer 0.4s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.msg:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 👤 USUARIO (VERDE SUAVE PRO) */
+.msg.user{
+    background: linear-gradient(135deg,#a8e6cf,#dcedc1);
+    color:#333;
+    margin-left:auto;
+    border-bottom-right-radius:8px;
+    border-bottom-left-radius:20px;
+}
+
+/* 🤖 IA (GRIS CLARO MODERNO) */
+.msg.ia{
+    background: linear-gradient(135deg,#f0f0f0,#e0e0e0);
+    color:#333;
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:20px;
+}
+
+/* ✨ ANIMACIÓN SUAVE */
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* PANEL DEL CHAT */
+.chat-panel{
+    background: linear-gradient(145deg,#ffffff,#f7f7f7);
+    border-radius:20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+/* HEADER */
+.chat-header{
+    background: linear-gradient(90deg,#22d3ee,#4ade80);
+    color:white;
+    padding:12px 0;
+    border-radius:20px 20px 0 0;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+    letter-spacing:0.5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* CUERPO DEL CHAT */
+.chat-body{
+    background:#fafafa;
+    padding:12px;
+    flex:1;
+    overflow-y:auto;
+}
+
+/* FOOTER */
+.chat-footer{
+    background:#fff;
+    padding:10px 12px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.chat-footer input{
+    flex:1;
+    border:1px solid #ddd;
+    border-radius:25px;
+    padding:10px 14px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.chat-footer input:focus{
+    outline:none;
+    border-color:#22d3ee;
+    box-shadow:0 0 8px rgba(34,211,238,0.3);
+}
+
+.chat-footer button{
+    background: linear-gradient(90deg,#4ade80,#22d3ee);
+    color:white;
+    border:none;
+    border-radius:25px;
+    padding:10px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.chat-footer button:hover{
+    transform: scale(1.05);
+    box-shadow:0 4px 12px rgba(34,211,238,0.4);
+}
+
+/* BOTONES DE JUEGO */
+.btn-game{
+    background: linear-gradient(45deg,#4ade80,#00e676);
+    border:none;
+    padding:10px 18px;
+    margin:5px;
+    border-radius:15px;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.btn-game:hover{
+    transform:scale(1.1);
+    box-shadow:0 6px 16px rgba(0,0,0,0.25);
+}

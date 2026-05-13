@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Juego PRO de Mecanografía 🔥</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:#222;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+#texto{
+    font-size:22px;
+    margin:20px 0;
+    line-height:1.5;
+}
+
+.correct{ color:#00ff88; }
+.error{ color:#ff4d4d; }
+
+input{
+    width:100%;
+    padding:15px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+}
+
+.stats{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-around;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#00c3ff;
+    color:white;
+    cursor:pointer;
+}
+
+.level{
+    font-weight:bold;
+    color:#ffd700;
+    font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⌨️ Juego PRO de Mecanografía</h1>
+
+<div class="container">
+    <div class="level" id="nivel">Nivel 1</div>
+    <div id="texto"></div>
+
+    <input type="text" id="input" placeholder="Escribe aquí...">
+
+    <div class="stats">
+        <div>⏱️ <span id="tiempo">0</span>s</div>
+        <div>🎯 <span id="precision">100</span>%</div>
+    </div>
+
+    <button onclick="reiniciar()">Reiniciar</button>
+</div>
+
+<script>
+const niveles = [
+[
+"el pollo loco es un pollo normal",
+"Cancerbero vida muerte ",
+"los gatos no pueden comer chocolate"
+],
+[
+"tres tristes tigres tragan trigo en un trigal",
+"escribir rapido es mas dificil de lo que parece",
+"si funciona no lo toques pero igual lo toco"
+],
+[
+"pablito clavo un clavito en la calva de un calvito",
+"pepe pecas pica papas con un pico con un pico pica papas pepe pecas",
+"erre con erre cigarro erre con erre barril rapido ruedan los carros"
+],
+[
+"la programacion es una habilidad poderosa que requiere practica constante y paciencia",
+"convertirse en desarrollador implica fallar muchas veces antes de lograr algo increible",
+"los bugs aparecen cuando menos los esperas pero eso hace el reto mas divertido"
+]
+];
+
+let nivelActual = 0;
+let texto = "";
+let tiempo = 0;
+let intervalo;
+let errores = 0;
+
+const textoDiv = document.getElementById("texto");
+const input = document.getElementById("input");
+const tiempoSpan = document.getElementById("tiempo");
+const precisionSpan = document.getElementById("precision");
+const nivelSpan = document.getElementById("nivel");
+
+function obtenerTextoAleatorio(){
+    let lista = niveles[nivelActual];
+    return lista[Math.floor(Math.random() * lista.length)];
+}
+
+function iniciarNivel(){
+    texto = obtenerTextoAleatorio();
+    input.value = "";
+    tiempo = 0;
+    errores = 0;
+
+    nivelSpan.textContent = "Nivel " + (nivelActual + 1);
+    mostrarTexto();
+
+    clearInterval(intervalo);
+    intervalo = setInterval(()=>{
+        tiempo++;
+        tiempoSpan.textContent = tiempo;
+    },1000);
+
+    input.focus();
+}
+
+function mostrarTexto(){
+    textoDiv.innerHTML = "";
+    texto.split("").forEach(letra=>{
+        let span = document.createElement("span");
+        span.textContent = letra;
+        textoDiv.appendChild(span);
+    });
+}
+
+input.addEventListener("input", ()=>{
+    const valor = input.value;
+    const letras = textoDiv.children;
+
+    let erroresLocales = 0;
+
+    for(let i = 0; i < letras.length; i++){
+        const span = letras[i];
+        const letra = valor[i];
+
+        if(letra == null){
+            span.className = "";
+        } else if(letra === span.textContent){
+            span.className = "correct";
+        } else {
+            span.className = "error";
+            erroresLocales++;
+        }
+    }
+
+    errores = erroresLocales;
+
+    let precision = valor.length 
+        ? ((valor.length - errores) / valor.length) * 100 
+        : 100;
+
+    precisionSpan.textContent = precision.toFixed(0);
+
+    // 🔥 DETECCIÓN INSTANTÁNEA (sin delay)
+    if(valor.length === texto.length && errores === 0){
+        siguienteNivel();
+    }
+});
+
+function siguienteNivel(){
+    clearInterval(intervalo);
+
+    setTimeout(()=>{
+        if(nivelActual < niveles.length - 1){
+            nivelActual++;
+            iniciarNivel();
+        } else {
+            alert("🏆 ERES UN MAESTRO!");
+            nivelActual = 0;
+            iniciarNivel();
+        }
+    }, 100); // micro delay para suavidad
+}
+
+function reiniciar(){
+    nivelActual = 0;
+    iniciarNivel();
+}
+
+iniciarNivel();
+</script>
+
+</body>
+</html>
