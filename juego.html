@@ -2,208 +2,342 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Juego PRO de Mecanografía 🔥</title>
+<title>Mecanografia  🚀</title>
 
 <style>
+*{box-sizing:border-box;}
+
 body{
-    font-family: Arial;
-    background: linear-gradient(135deg,#1e1e2f,#3a3a6a);
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background: radial-gradient(circle at top,#0f172a,#020617);
     color:white;
-    text-align:center;
-    padding:20px;
 }
 
-.container{
-    max-width:700px;
-    margin:auto;
-    background:#222;
+/* LAYOUT */
+.app{display:flex;height:100vh;}
+
+.sidebar{
+    width:260px;
+    background:rgba(0,0,0,0.65);
+    backdrop-filter:blur(12px);
     padding:20px;
-    border-radius:15px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-#texto{
+.title{
     font-size:22px;
-    margin:20px 0;
-    line-height:1.5;
+    color:#22c55e;
+    text-shadow:0 0 10px #22c55e;
 }
 
-.correct{ color:#00ff88; }
-.error{ color:#ff4d4d; }
+/* STATS */
+.statCard{
+    background:rgba(255,255,255,0.05);
+    border-radius:12px;
+    padding:12px;
+    margin:10px 0;
+    display:flex;
+    justify-content:space-between;
+    transition:0.2s;
+}
+.statCard:hover{transform:scale(1.05);}
 
+.value{font-weight:bold;}
+.green{color:#22c55e;}
+.blue{color:#38bdf8;}
+.orange{color:#f97316;}
+.gold{color:#facc15;}
+.purple{color:#a855f7;}
+
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:720px;
+    padding:30px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+}
+
+/* TEXTO */
+#texto{
+    font-size:26px;
+    text-align:center;
+}
+.correct{color:#22c55e;}
+.error{color:#ef4444;}
+.active{background:#334155;}
+
+/* INPUT */
 input{
     width:100%;
     padding:15px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-}
-
-.stats{
-    margin-top:15px;
-    display:flex;
-    justify-content:space-around;
-}
-
-button{
     margin-top:20px;
-    padding:10px 20px;
     border:none;
     border-radius:10px;
-    background:#00c3ff;
+    background:#020617;
     color:white;
+}
+
+/* PROGRESS */
+.progress{height:8px;background:#1e293b;margin-top:10px;border-radius:10px;}
+.bar{height:100%;width:0%;background:linear-gradient(90deg,#22c55e,#38bdf8);}
+
+/* TECLADO */
+#keyboard{
+    margin-top:20px;
+    text-align:center;
+}
+.key{
+    display:inline-block;
+    padding:10px;
+    margin:3px;
+    background:#1e293b;
+    border-radius:5px;
+    transition:0.1s;
+}
+.activeKey{
+    background:#22c55e;
+    color:black;
+    transform:scale(1.2);
+}
+
+/* BOTONES */
+button{
+    margin-top:10px;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#22c55e,#38bdf8);
     cursor:pointer;
 }
 
-.level{
-    font-weight:bold;
-    color:#ffd700;
-    font-size:20px;
+/* FINAL */
+.result{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.9);
+    flex-direction:column;
 }
 </style>
 </head>
 
 <body>
 
-<h1>⌨️ Juego PRO de Mecanografía</h1>
+<div class="app">
 
-<div class="container">
-    <div class="level" id="nivel">Nivel 1</div>
-    <div id="texto"></div>
+<div class="sidebar">
+<div>
+<div class="title">⚡ Mecanografia</div>
 
-    <input type="text" id="input" placeholder="Escribe aquí...">
+<div class="statCard">⏱ Tiempo <span id="time" class="value">30</span></div>
+<div class="statCard">⚡ WPM <span id="wpm" class="value blue">0</span></div>
+<div class="statCard">🎯 Precisión <span id="precision" class="value green">100%</span></div>
+<div class="statCard">🔥 Combo <span id="combo" class="value orange">0</span></div>
+<div class="statCard">🏆 Puntos <span id="score" class="value gold">0</span></div>
+<div class="statCard">🎮 Nivel <span id="level" class="value purple">1</span></div>
 
-    <div class="stats">
-        <div>⏱️ <span id="tiempo">0</span>s</div>
-        <div>🎯 <span id="precision">100</span>%</div>
-    </div>
+</div>
 
-    <button onclick="reiniciar()">Reiniciar</button>
+<button onclick="togglePause()">⏸ Pausa</button>
+<button onclick="reiniciar()">🔄 Reiniciar</button>
+
+</div>
+
+<div class="main">
+<div class="card">
+
+<div id="texto"></div>
+<input id="input">
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div id="keyboard"></div>
+
+</div>
+</div>
+
+</div>
+
+<div class="result" id="result">
+<h1>🏆 RESULTADOS</h1>
+<p id="finalStats"></p>
+<button onclick="reiniciar()">Jugar otra vez</button>
 </div>
 
 <script>
-const niveles = [
-[
-"el pollo loco es un pollo normal",
-"Cancerbero vida muerte ",
-"los gatos no pueden comer chocolate"
-],
-[
-"tres tristes tigres tragan trigo en un trigal",
-"escribir rapido es mas dificil de lo que parece",
-"si funciona no lo toques pero igual lo toco"
-],
-[
-"pablito clavo un clavito en la calva de un calvito",
-"pepe pecas pica papas con un pico con un pico pica papas pepe pecas",
-"erre con erre cigarro erre con erre barril rapido ruedan los carros"
-],
-[
-"la programacion es una habilidad poderosa que requiere practica constante y paciencia",
-"convertirse en desarrollador implica fallar muchas veces antes de lograr algo increible",
-"los bugs aparecen cuando menos los esperas pero eso hace el reto mas divertido"
-]
-];
+// AUDIO
+const keySound=new Audio("typing.mp3");
+const winSound=new Audio("win.mp3");
+const loseSound=new Audio("lose.mp3");
 
-let nivelActual = 0;
-let texto = "";
-let tiempo = 0;
-let intervalo;
-let errores = 0;
+// PALABRAS
+const palabras=["casa","gato","perro","sol","codigo","rapido","algoritmo","estructura","javascript","practica"];
 
-const textoDiv = document.getElementById("texto");
-const input = document.getElementById("input");
-const tiempoSpan = document.getElementById("tiempo");
-const precisionSpan = document.getElementById("precision");
-const nivelSpan = document.getElementById("nivel");
+// VARIABLES
+let texto="",nivel=1,tiempo=30,errores=0,combo=0,score=0,start;
+let pausa=false;
 
-function obtenerTextoAleatorio(){
-    let lista = niveles[nivelActual];
-    return lista[Math.floor(Math.random() * lista.length)];
+// ELEMENTOS
+const textoDiv=document.getElementById("texto");
+const input=document.getElementById("input");
+const timeSpan=document.getElementById("time");
+const wpmSpan=document.getElementById("wpm");
+const precisionSpan=document.getElementById("precision");
+const comboSpan=document.getElementById("combo");
+const scoreSpan=document.getElementById("score");
+const levelSpan=document.getElementById("level");
+const bar=document.getElementById("bar");
+const keyboard=document.getElementById("keyboard");
+const result=document.getElementById("result");
+const finalStats=document.getElementById("finalStats");
+
+// TECLADO
+const letras="abcdefghijklmnopqrstuvwxyz ";
+letras.split("").forEach(l=>{
+    let k=document.createElement("div");
+    k.className="key";
+    k.textContent=l===" "?"␣":l;
+    k.id="k_"+(l===" "?"space":l);
+    keyboard.appendChild(k);
+});
+
+// TEXTO DINÁMICO
+function generarTexto(){
+    let frase=[];
+    for(let i=0;i<5+nivel;i++){
+        frase.push(palabras[Math.floor(Math.random()*palabras.length)]);
+    }
+    return frase.join(" ");
 }
 
-function iniciarNivel(){
-    texto = obtenerTextoAleatorio();
-    input.value = "";
-    tiempo = 0;
-    errores = 0;
-
-    nivelSpan.textContent = "Nivel " + (nivelActual + 1);
-    mostrarTexto();
-
-    clearInterval(intervalo);
-    intervalo = setInterval(()=>{
-        tiempo++;
-        tiempoSpan.textContent = tiempo;
-    },1000);
-
-    input.focus();
-}
-
-function mostrarTexto(){
-    textoDiv.innerHTML = "";
-    texto.split("").forEach(letra=>{
-        let span = document.createElement("span");
-        span.textContent = letra;
+// INICIAR
+function iniciar(){
+    texto=generarTexto();
+    textoDiv.innerHTML="";
+    texto.split("").forEach(l=>{
+        let span=document.createElement("span");
+        span.textContent=l;
         textoDiv.appendChild(span);
     });
+
+    input.value="";
+    errores=0;
+    combo=0;
+    tiempo=30;
+    start=Date.now();
+    pausa=false;
 }
 
-input.addEventListener("input", ()=>{
-    const valor = input.value;
-    const letras = textoDiv.children;
+// TIMER
+setInterval(()=>{
+    if(pausa) return;
 
-    let erroresLocales = 0;
+    tiempo--;
+    timeSpan.textContent=tiempo;
 
-    for(let i = 0; i < letras.length; i++){
-        const span = letras[i];
-        const letra = valor[i];
+    if(tiempo<=0){
+        mostrarResultado();
+    }
+},1000);
 
-        if(letra == null){
-            span.className = "";
-        } else if(letra === span.textContent){
-            span.className = "correct";
-        } else {
-            span.className = "error";
-            erroresLocales++;
-        }
+// INPUT
+input.addEventListener("input",()=>{
+    if(pausa) return;
+
+    keySound.currentTime=0;
+    keySound.play();
+
+    let valor=input.value;
+    let spans=textoDiv.children;
+
+    let erroresLocales=0;
+
+    for(let i=0;i<spans.length;i++){
+        let span=spans[i];
+        let letra=valor[i];
+
+        if(letra==null) span.className="";
+        else if(letra===span.textContent) span.className="correct";
+        else{span.className="error";erroresLocales++;}
+
+        if(i===valor.length) span.classList.add("active");
     }
 
-    errores = erroresLocales;
+    // TECLADO VISUAL CORRECTO
+    document.querySelectorAll(".key").forEach(k=>k.classList.remove("activeKey"));
+    let last=valor.slice(-1) || " ";
+    let keyId = last===" " ? "k_space" : "k_"+last;
+    let key=document.getElementById(keyId);
+    if(key) key.classList.add("activeKey");
 
-    let precision = valor.length 
-        ? ((valor.length - errores) / valor.length) * 100 
-        : 100;
+    errores=erroresLocales;
 
-    precisionSpan.textContent = precision.toFixed(0);
+    let precision=valor.length?((valor.length-errores)/valor.length)*100:100;
+    precisionSpan.textContent=precision.toFixed(0)+"%";
 
-    // 🔥 DETECCIÓN INSTANTÁNEA (sin delay)
-    if(valor.length === texto.length && errores === 0){
-        siguienteNivel();
+    let tiempoReal=(Date.now()-start)/60000;
+    let wpm=(valor.length/5)/tiempoReal;
+    wpmSpan.textContent=Math.round(wpm);
+
+    combo=erroresLocales===0?combo+1:0;
+    comboSpan.textContent=combo;
+
+    score+=combo;
+    scoreSpan.textContent=score;
+
+    bar.style.width=(valor.length/texto.length)*100+"%";
+
+    if(valor===texto){
+        winSound.play();
+        nivel++;
+        levelSpan.textContent=nivel;
+        iniciar();
     }
 });
 
-function siguienteNivel(){
-    clearInterval(intervalo);
-
-    setTimeout(()=>{
-        if(nivelActual < niveles.length - 1){
-            nivelActual++;
-            iniciarNivel();
-        } else {
-            alert("🏆 ERES UN MAESTRO!");
-            nivelActual = 0;
-            iniciarNivel();
-        }
-    }, 100); // micro delay para suavidad
+// PAUSA
+function togglePause(){
+    pausa=!pausa;
 }
 
+// RESULTADO FINAL
+function mostrarResultado(){
+    loseSound.play();
+
+    finalStats.innerHTML=`
+⏱ Tiempo: ${tiempo}<br>
+⚡ WPM: ${wpmSpan.textContent}<br>
+🎯 Precisión: ${precisionSpan.textContent}<br>
+🔥 Combo: ${combo}<br>
+🏆 Puntos: ${score}<br>
+🎮 Nivel: ${nivel}
+`;
+
+    result.style.display="flex";
+}
+
+// REINICIAR
 function reiniciar(){
-    nivelActual = 0;
-    iniciarNivel();
+    result.style.display="none";
+    score=0;
+    nivel=1;
+    iniciar();
 }
 
-iniciarNivel();
+iniciar();
 </script>
 
 </body>
