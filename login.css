@@ -1,0 +1,142 @@
+/* --- BASE MODERNA --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #4ade80; /* Verde ambiental */
+    --secondary: #00f2fe;
+    --dark: #0f172a;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --input-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body.login-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gradient);
+}
+
+/* --- TARJETA REFINADA --- */
+.glass-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 3.5rem 2.5rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.logo-login {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.glass-card h2 {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.glass-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+}
+
+/* --- INPUTS ALINEADOS Y LIMPIOS --- */
+.input-group {
+    position: relative;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    background: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white !important;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s ease;
+    text-align: left; /* Alineación perfecta */
+}
+
+/* El truco para que el label no estorbe */
+.input-group label {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+/* Animación cuando escribes */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: var(--primary);
+    background: #0f172a; /* Tapa la línea del borde */
+    padding: 0 6px;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    background: rgba(74, 222, 128, 0.05);
+}
+
+/* --- ROW PARA EDAD E IDIOMA --- */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* --- BOTÓN DE ALTO NIVEL --- */
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: var(--primary);
+    border: none;
+    border-radius: 12px;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #22c55e;
+    transform: translateY(-2px);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 480px) {
+    .glass-card {
+        margin: 1rem;
+        padding: 2.5rem 1.5rem;
+    }
+}

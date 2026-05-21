@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Acordeón PRO</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 { text-align: center; }
+.subtitle{ text-align:center; opacity:0.7; margin-bottom:30px; }
+
+/* 🔥 SECCIONES */
+.section {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.section h2{
+  text-align:center;
+  color:#22d3ee;
+}
+
+/* BENEFICIOS */
+.benefits{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.benefit{
+  background: rgba(0,255,200,0.1);
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+}
+
+/* VIDEO (NO TOCADO) */
+.video-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #22d3ee;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border:none;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  cursor:pointer;
+}
+
+button.done { background:#4ade80; }
+
+/* PROGRESO */
+.progress-box {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.bar {
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+}
+
+/* 🎹 JUEGO */
+.note{
+  font-size:28px;
+  margin:15px;
+}
+
+input{
+  padding:10px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+}
+
+#resultado{
+  margin-top:10px;
+  font-weight:bold;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🪗 Curso de Acordeón</h1>
+  <p class="subtitle">Aprende música y completa tu progreso</p>
+
+  <!-- BENEFICIOS -->
+  <div class="section">
+    <h2>🎵 Beneficios de aprender acordeón</h2>
+    <div class="benefits">
+      <div class="benefit">🎶 Mejoras tu oído musical</div>
+      <div class="benefit">🧠 Aumenta tu concentración</div>
+      <div class="benefit">🤝 Coordinación de manos</div>
+      <div class="benefit">🎼 Puedes tocar canciones reales</div>
+      <div class="benefit">🔥 Desarrollas disciplina</div>
+    </div>
+  </div>
+
+  <!-- VIDEOS (NO TOCADOS) -->
+  <div class="video-card">
+    <div class="badge">Video 1</div>
+    <video id="v1" controls>
+      <source src="videoac.mp4" type="video/mp4">
+    </video>
+    <button id="b0" onclick="mark(0)">Completar</button>
+  </div>
+
+  <div class="video-card">
+    <div class="badge">Video 2</div>
+    <video id="v2" controls>
+      <source src="videoac.mp4" type="video/mp4">
+    </video>
+    <button id="b1" onclick="mark(1)">Completar</button>
+  </div>
+
+  <div class="video-card">
+    <div class="badge">Video 3</div>
+    <video id="v3" controls>
+      <source src="videoac.mp4" type="video/mp4">
+    </video>
+    <button id="b2" onclick="mark(2)">Completar</button>
+  </div>
+
+  <!-- 🎮 JUEGO MUSICAL -->
+  <div class="section">
+    <h2>🎹 Juego de Notas</h2>
+    <div id="nota" class="note"></div>
+    <input id="respuesta" placeholder="Escribe la nota (do re mi...)">
+    <button onclick="verificar()">Responder</button>
+    <div id="resultado"></div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div id="box" class="progress-box">
+    <h2>Progreso</h2>
+    <p id="txt">0 / 3 completados</p>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+  </div>
+
+</div>
+
+<script>
+let done = [false,false,false];
+
+function mark(i){
+  done[i] = true;
+  document.getElementById('b'+i).classList.add('done');
+  document.getElementById('b'+i).innerText = '✔ Completado';
+  update();
+}
+
+function update(){
+  let c = done.filter(x=>x).length;
+  document.getElementById('txt').innerText = c + ' / 3 completados';
+
+  let percent = (c/3)*100;
+  document.getElementById('fill').style.width = percent + '%';
+
+  if(c===3){
+    document.getElementById('txt').innerText = '🎉 CURSO COMPLETADO';
+
+    const btn = document.createElement('button');
+    btn.innerText = '📄 Descargar reconocimiento';
+    btn.onclick = descargarDiploma;
+    document.getElementById('box').appendChild(btn);
+  }
+}
+
+function descargarDiploma(){
+  const contenido = `DIPLOMA DE FINALIZACIÓN`;
+  const blob = new Blob([contenido], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'diploma.pdf';
+  a.click();
+}
+
+/* 🎹 JUEGO */
+const notas = ["do","re","mi","fa","sol","la","si"];
+let actual;
+
+function nueva(){
+  actual = notas[Math.floor(Math.random()*notas.length)];
+  document.getElementById("nota").innerText = actual.toUpperCase();
+}
+
+function verificar(){
+  let r = document.getElementById("respuesta").value.toLowerCase();
+  if(r === actual){
+    document.getElementById("resultado").innerText = "🔥 Correcto!";
+  } else {
+    document.getElementById("resultado").innerText = "❌ Intenta otra vez";
+  }
+  nueva();
+}
+
+nueva();
+</script>
+
+</body>
+</html>

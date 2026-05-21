@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EducaAcción | Plataforma Educativa Inteligente</title>
+    <link rel="stylesheet" href="estilo2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">🌿 EducaAcción</div>
+    <nav>
+        <a href="loginfak.html" >Inicio</a>
+        <a href="#propuesta"   id="linkPropuesta">Propuesta</a>
+        <a href="cursos.html" id="linkPropuesta">Módulos</a>
+        <a href="#alcance">Impacto</a>
+        <a href="loginfak.html" id="linkPropuesta">Contacto</a>
+        <a href="usuarios.html" >Usuarios</a>
+        <a href="#" id="chatToggle">Chat IA</a>
+        <a href="#" id="logoutBtn">Cerrar Sesión</a> <!-- 🔒 NUEVO -->
+    </nav>
+</header>
+
+<main>
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Transformando Educación en Acción Ambiental</h1>
+            <p>Aprende, juega y genera impacto ecológico real a través de nuestra plataforma educativa inteligente.</p>
+            <button class="btn-primary">¡Únete al cambio!</button>
+        </div>
+    </section>
+
+    <section id="propuesta" class="info-section">
+        <div class="container">
+            <h2>¿Por qué nace EducaAcción?</h2>
+            <div class="grid-info">
+                <article class="info-text">
+                    <h3>El Desafío</h3>
+                    <p>Los métodos tradicionales a menudo separan la teoría de la práctica. En EducaAcción, resolvemos este problema vinculando el aprendizaje infantil con acciones reales en el entorno.</p>
+                </article>
+                <article class="info-text">
+                    <h3>Nuestra Misión</h3>
+                    <p>Fomentamos el aprendizaje activo y la responsabilidad ambiental desde edades tempranas, alineándonos con los <strong>Objetivos de Desarrollo Sostenible (ODS)</strong> para un futuro más verde.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="modulos" class="modules">
+        <h2>Herramientas para un Futuro Sostenible</h2>
+        <div class="card-container">
+            <article class="card">
+                <div class="icon">📚</div>
+                <h3>Cursos Inteligentes</h3>
+                <p>Aprendizaje adaptativo con IA que evoluciona contigo, diseñando un camino educativo personalizado.</p>
+            </article>
+
+            <article class="card">
+                <div class="icon">🎮</div>
+                <h3>Gamificación Activa</h3>
+                <p>Gana puntos y desbloquea insignias mientras completas retos prácticos con objetos de tu hogar.</p>
+            </article>
+
+           
+        </div>
+    </section>
+
+    <section id="catalogo" class="catalogo-section">
+        <h2 class="catalogo-title">🎓 Explora Nuestros Cursos</h2>
+        <div class="catalogo-container">
+
+            <!-- 🎵 ACORDEÓN -->
+            <div class="curso-card">
+                <img src="aordeon.jpeg">
+                <div class="curso-info">
+                    <h3>Acordeón</h3>
+                    <p>Aprende desde cero a tocar acordeón con ejercicios prácticos, ritmo y teoría musical básica.</p>
+                    <button>Comenzar</button>
+                </div>
+            </div>
+
+            <!-- 📚 ESPAÑOL -->
+            <div class="curso-card">
+                <img src="espanol.jpg">
+                <div class="curso-info">
+                    <h3>Español</h3>
+                    <p>Mejora tu ortografía, redacción y comprensión con actividades dinámicas y juegos.</p>
+                    <button>Comenzar</button>
+                </div>
+            </div>
+
+            <!-- 🔢 MATEMÁTICAS -->
+            <div class="curso-card">
+                <img src="mate.jpeg">
+                <div class="curso-info">
+                    <h3>Matemáticas</h3>
+                    <p>Refuerza operaciones básicas, lógica y resolución de problemas con retos interactivos.</p>
+                    <button>Comenzar</button>
+                </div>
+            </div>
+
+            <!-- 🏠 EN CASA -->
+            <div class="curso-card especial">
+                <img src="mecanografia.jpeg">
+                <div class="curso-info">
+                    <h3>Mecanografia</h3>
+                    <p>aprede a escribir rapido .</p>
+                    <button  onclick="">Explorar</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="alcance" class="impact-section">
+        <div class="glass-container">
+            <h2>Impacto del Proyecto</h2>
+            <p>Basado en la metodología <strong>SCRUM</strong>, nuestro alcance se centra en la educación de calidad y el consumo responsable.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>IA Educativa</h4>
+                    <p>Contenido Adaptativo</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Práctica Real</h4>
+                    <p>Retos en el Hogar</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Sostenibilidad</h4>
+                    <p>Impacto Medible</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="contacto">
+    <div class="footer-content">
+        <div class="footer-logo">🌿 EducaAcción</div>
+        <div class="footer-dev">
+            <p><strong>Desarrollado por:</strong> Ramon Eduardo Ortiz Magaña</p>
+            <p>Matrícula: 22778 | Grupo: 8 C</p>
+        </div>
+        <p class="copyright">© 2026 EducaAcción | Proyecto Educativo de Impacto Ambiental</p>
+    </div>
+
+    <div class="chat-panel" id="chatPanel">
+        <div class="chat-header">🤖 Chat IA</div>
+        <div class="chat-body" id="chatBody">
+            <p><em>Bienvenido al chat con IA. Escribe tu mensaje abajo.</em></p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+            <button id="sendBtn">Enviar</button>
+        </div>
+    </div>
+</footer>
+<script>
+    function bloquearAcceso(bloquear){
+
+    const links = [
+        "linkPropuesta",
+        "linkModulos",
+        "linkImpacto",
+        "linkContacto",
+        "linkUsuarios"
+    ];
+
+    links.forEach(id=>{
+        const link = document.getElementById(id);
+
+        if(bloquear){
+            link.style.opacity = "0.5";
+            link.style.pointerEvents = "none"; // 🔒 bloquea click
+        }else{
+            link.style.opacity = "1";
+            link.style.pointerEvents = "auto";
+        }
+    });
+}
+
+
+
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        usuarioActual = user;
+        nombreUsuario = user.displayName || user.email.split("@")[0];
+
+        bloquearAcceso(false); // ✅ desbloquea
+
+        console.log("Usuario:", nombreUsuario);
+    }else{
+        usuarioActual = null;
+        nombreUsuario = "";
+
+        bloquearAcceso(true); // 🔒 bloquea todo
+
+        console.log("No hay usuario logueado");
+    }
+});
+
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        usuarioActual = user;
+        nombreUsuario = user.displayName || user.email.split("@")[0];
+
+        bloquearAcceso(false); // ✅ desbloquea
+
+        console.log("Usuario:", nombreUsuario);
+    }else{
+        usuarioActual = null;
+        nombreUsuario = "";
+
+        bloquearAcceso(true); // 🔒 bloquea todo
+
+        console.log("No hay usuario logueado");
+    }
+});
+
+</script>
+<script type="module">
+// 🔥 FIREBASE
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAG8y2Zo8z1Gd5S0SRujr2jyQDYZF2RCj8",
+  authDomain: "educaaccionedu.firebaseapp.com",
+  projectId: "educaaccionedu"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// ELEMENTOS
+const chatToggle = document.getElementById("chatToggle");
+const chatPanel = document.getElementById("chatPanel");
+const chatBody = document.getElementById("chatBody");
+const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+let usuarioActual = null;
+let nombreUsuario = "";
+
+// 🔥 DETECTAR USUARIO LOGUEADO
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        usuarioActual = user;
+        nombreUsuario = user.displayName || user.email.split("@")[0];
+        console.log("Usuario:", nombreUsuario);
+    }else{
+        console.log("No hay usuario logueado");
+    }
+});
+
+// 🔥 ABRIR CHAT
+chatToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    chatPanel.classList.toggle("open");
+    iniciarChat();
+});
+
+// 🔥 INICIO
+function iniciarChat(){
+    if(usuarioActual){
+        mensajeIA(`¡Hola ${nombreUsuario}! 👋 Bienvenido a EducaAcción 🌿\nEscribe "jugar" para un reto 🎮`);
+    }else{
+        mensajeIA("⚠️ Debes iniciar sesión primero");
+    }
+}
+
+// 🧠 IA PRO + JUEGO
+function generarRespuesta(msg){
+    msg = msg.toLowerCase();
+
+    if(!window.juego){
+        window.juego = {activo:false,paso:0,puntos:0,preguntas:[
+            {p:"¿2 + 2 es 4?", r:"si"},
+            {p:"¿El acordeón es un instrumento?", r:"si"},
+            {p:"¿5 es menor que 2?", r:"no"},
+            {p:"¿Leer mejora tu mente?", r:"si"},
+            {p:"¿El reciclaje ayuda al planeta?", r:"si"}
+        ]};
+    }
+
+    if(msg.includes("jugar") || msg.includes("reto")){
+        window.juego.activo = true;
+        window.juego.paso = 0;
+        window.juego.puntos = 0;
+        return `🎮 Vamos a jugar ${nombreUsuario} 😎 responde SI o NO\n👉 ${window.juego.preguntas[0].p}`;
+    }
+
+    if(window.juego.activo){
+        const actual = window.juego.preguntas[window.juego.paso];
+        if(msg === actual.r) window.juego.puntos++;
+        window.juego.paso++;
+        if(window.juego.paso < 3){
+            return `👉 ${window.juego.preguntas[window.juego.paso].p}`;
+        }else{
+            window.juego.activo = false;
+            if(window.juego.puntos >= 2){
+                return `😂🔥 ${nombreUsuario} GANASTE 😎 eres inteligente 🧠💪`;
+            }else{
+                return `😅 ${nombreUsuario} perdiste... escribe "jugar" y te doy revancha 😈`;
+            }
+        }
+    }
+
+    if(msg.includes("hola") || msg.includes("buenas")) return `Hola ${nombreUsuario} 😄 ¿Quieres cursos o jugar? 🎮`;
+    if(msg.includes("curso")) return `${nombreUsuario}, tenemos:\n🎵 Acordeón\n📚 Español\n🔢 Matemáticas\n🏠 Creatividad`;
+    if(msg.includes("acordeon")) return `${nombreUsuario}, el acordeón es 🔥 puedo enseñarte canciones`;
+    if(msg.includes("mate")) return `${nombreUsuario}, te ayudo con ejercicios 🧠 escribe "jugar" para practicar`;
+    if(msg.includes("español")) return `${nombreUsuario}, mejoramos lectura y escritura 📖`;
+    if(msg.includes("casa") || msg.includes("creatividad")) return `${nombreUsuario}, puedes crear cosas con reciclaje ♻️`;
+    if(msg.includes("reciclaje")) return `${nombreUsuario}, cuidar el planeta es clave 🌍`;
+    if(msg.includes("gracias")) return `Para eso estoy ${nombreUsuario} 😎💚`;
+
+    const respuestas = [
+        `${nombreUsuario}, interesante 🤔`,
+        `${nombreUsuario}, cuéntame más 😏`,
+        `${nombreUsuario}, prueba escribir "jugar" 🎮`,
+        `${nombreUsuario}, puedo ayudarte 😎`
+    ];
+    return respuestas[Math.floor(Math.random()*respuestas.length)];
+}
+
+// 💬 MENSAJE IA
+async function mensajeIA(texto){
+    const typing = document.createElement("div");
+    typing.className = "msg ia";
+    typing.innerHTML = "🤖 escribiendo...";
+    chatBody.appendChild(typing);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    await new Promise(r => setTimeout(r, 800));
+    typing.remove();
+
+    const div = document.createElement("div");
+    div.className = "msg ia";
+    div.innerHTML = `🤖 ${texto}`;
+    chatBody.appendChild(div);
+
+    if(usuarioActual){
+        await addDoc(collection(db, "chats"), {
+            uid: usuarioActual.uid,
+            usuario: nombreUsuario,
+            tipo: "ia",
+            mensaje: texto,
+            fecha: new Date()
+        });
+    }
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// 💬 MENSAJE USUARIO
+async function mensajeUsuario(texto){
+    const div = document.createElement("div");
+    div.className = "msg user";
+    div.innerHTML = `👤 ${texto}`;
+    chatBody.appendChild(div);
+
+    if(usuarioActual){
+        await addDoc(collection(db, "chats"), {
+            uid: usuarioActual.uid,
+            usuario: nombreUsuario,
+            tipo: "user",
+            mensaje: texto,
+            fecha: new Date()
+        });
+    }
+}
+
+// 🚀 ENVIAR MENSAJE
+sendBtn.addEventListener("click", async () => {
+    const msg = chatInput.value.trim();
+    if(msg !== ""){
+        mensajeUsuario(msg);
+        chatInput.value = "";
+        setTimeout(()=>{mensajeIA(generarRespuesta(msg));},500);
+    }
+});
+chatInput.addEventListener("keypress", (e)=>{if(e.key==="Enter") sendBtn.click();});
+
+// 🔒 CERRAR SESIÓN
+logoutBtn.addEventListener("click", async (e)=>{
+    e.preventDefault();
+    if(usuarioActual){
+        try{
+            await signOut(auth);
+            usuarioActual=null;
+            nombreUsuario="";
+            mensajeIA("⚠️ Has cerrado sesión. Vuelve pronto 😎");
+            chatPanel.classList.remove("open");
+            console.log("Usuario ha cerrado sesión");
+        }catch(err){
+            console.error("Error al cerrar sesión:", err);
+            mensajeIA("⚠️ Error al cerrar sesión, intenta de nuevo.");
+        }
+    }else{
+        mensajeIA("⚠️ No hay usuario logueado");
+    }
+});
+</script>
+
+</body>
+</html>

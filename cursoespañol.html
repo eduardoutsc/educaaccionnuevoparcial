@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Español PRO</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+}
+
+h1 { text-align: center; }
+.subtitle{ text-align:center; opacity:0.7; margin-bottom:30px; }
+
+/* SECCIONES */
+.section {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.section h2{
+  text-align:center;
+  color:#22d3ee;
+}
+
+/* BENEFICIOS */
+.benefits{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.benefit{
+  background: rgba(0,255,200,0.1);
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+}
+
+/* VIDEO */
+.video-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #22d3ee;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border:none;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  cursor:pointer;
+}
+
+button.done { background:#4ade80; }
+
+/* PROGRESO */
+.progress-box {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.bar {
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+}
+
+/* 🎮 JUEGO DE TRABALENGUAS */
+.traba-box{
+  text-align:center;
+}
+
+#trabalenguas{
+  font-size:20px;
+  margin:15px;
+}
+
+#respuesta{
+  padding:10px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+  width: 50%;
+}
+
+#resultado{
+  margin-top:10px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>📖 Curso de Español</h1>
+  <p class="subtitle">Aprende mientras te diviertes con tus videos y juegos</p>
+
+  <!-- BENEFICIOS -->
+  <div class="section">
+    <h2>💡 Beneficios de estudiar español</h2>
+    <div class="benefits">
+      <div class="benefit">📝 Mejora tu escritura y ortografía</div>
+      <div class="benefit">📚 Aprende nuevo vocabulario</div>
+      <div class="benefit">🧠 Potencia tu comprensión lectora</div>
+      <div class="benefit">🎯 Expresarte mejor en conversaciones</div>
+      <div class="benefit">💡 Desarrolla tu creatividad con palabras</div>
+    </div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="video-card">
+    <div class="badge">Video 1</div>
+    <video id="v1" controls>
+      <source src="españolvi.mp4" type="video/mp4">
+    </video>
+    <button id="b0" onclick="mark(0)">Completar</button>
+  </div>
+
+  <div class="video-card">
+    <div class="badge">Video 2</div>
+    <video id="v2" controls>
+      <source src="españolvi.mp4" type="video/mp4">
+    </video>
+    <button id="b1" onclick="mark(1)">Completar</button>
+  </div>
+
+  <div class="video-card">
+    <div class="badge">Video 3</div>
+    <video id="v3" controls>
+      <source src="españolvi.mp4" type="video/mp4">
+    </video>
+    <button id="b2" onclick="mark(2)">Completar</button>
+  </div>
+
+  <!-- 🎮 JUEGO DE TRABALENGUAS -->
+  <div class="section traba-box">
+    <h2>🗣 Juego: Escribe el trabalenguas rápido</h2>
+    <div id="trabalenguas"></div>
+    <input id="respuesta" placeholder="Escribe aquí">
+    <button onclick="verificar()">Verificar</button>
+    <div id="resultado"></div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div id="box" class="progress-box">
+    <h2>Progreso</h2>
+    <p id="txt">0 / 3 completados</p>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+  </div>
+
+</div>
+
+<script>
+let done = [false,false,false];
+
+function mark(i){
+  done[i] = true;
+  document.getElementById('b'+i).classList.add('done');
+  document.getElementById('b'+i).innerText = '✔ Completado';
+  update();
+}
+
+function update(){
+  let c = done.filter(x=>x).length;
+  document.getElementById('txt').innerText = c + ' / 3 completados';
+
+  let percent = (c/3)*100;
+  document.getElementById('fill').style.width = percent + '%';
+
+  if(c===3){
+    document.getElementById('txt').innerText = '🎉 CURSO COMPLETADO';
+
+    const btn = document.createElement('button');
+    btn.innerText = '📄 Descargar Diploma';
+    btn.onclick = descargarDiploma;
+    document.getElementById('box').appendChild(btn);
+  }
+}
+
+function descargarDiploma(){
+  const contenido = `DIPLOMA DE FINALIZACIÓN`;
+  const blob = new Blob([contenido], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'reconoscimiento.pdf';
+  a.click();
+}
+
+/* 🎮 JUEGO DE TRABALENGUAS */
+const trabalenguas = [
+  "Tres tristes tigres tragan trigo en un trigal",
+  "Pablito clavó un clavito en la calva de un calvito",
+  "Erre con erre cigarro, erre con erre barril, rápido ruedan los carros cargados de azúcar del ferrocarril",
+  "Si tu gusto gustara del gusto que gusta mi gusto, mi gusto gustaría del gusto que gusta tu gusto"
+];
+
+let actual;
+
+function nuevaPregunta(){
+  actual = trabalenguas[Math.floor(Math.random()*trabalenguas.length)];
+  document.getElementById("trabalenguas").innerText = actual;
+  document.getElementById("respuesta").value = "";
+  document.getElementById("resultado").innerText = "";
+}
+
+function verificar(){
+  let r = document.getElementById("respuesta").value.trim();
+  if(r === actual){
+    document.getElementById("resultado").innerText = "🔥 Correcto!";
+  } else {
+    document.getElementById("resultado").innerText = "❌ Intenta otra vez";
+  }
+  nuevaPregunta();
+}
+
+nuevaPregunta();
+</script>
+
+</body>
+</html>
