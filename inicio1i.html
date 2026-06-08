@@ -1,410 +1,783 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EducaAcción | Plataforma Educativa Inteligente</title>
-    <link rel="stylesheet" href="estilo2.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EducaAcción | Plataforma Educativa Inteligente</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+    --color-boton:#c29b17;
+    --color-texto:#493924;
+    --color-secundario:#b89970;
+    --color-fondo:#f2eee3;
+    --blanco:#ffffff;
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--color-fondo);
+    font-family:'Roboto', sans-serif;
+    color:var(--color-texto);
+    overflow-x:hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(12px);
+    position:fixed;
+    top:0;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-family:'DM Sans', sans-serif;
+    font-size:2rem;
+    font-weight:700;
+    color:var(--color-texto);
+}
+
+nav{
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--color-texto);
+    font-weight:500;
+    transition:.3s;
+    position:relative;
+}
+
+nav a:hover{
+    color:var(--color-boton);
+}
+
+nav a::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background:var(--color-boton);
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    transition:.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 8%;
+    background:
+    linear-gradient(rgba(242,238,227,.88), rgba(242,238,227,.88)),
+    url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200');
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:850px;
+}
+
+.hero h1{
+    font-family:'DM Sans', sans-serif;
+    font-size:4rem;
+    line-height:1.1;
+    margin-bottom:25px;
+    color:var(--color-texto);
+}
+
+.hero p{
+    font-size:1.25rem;
+    color:var(--color-secundario);
+    margin-bottom:35px;
+}
+
+.btn-primary{
+    background:var(--color-boton);
+    border:none;
+    padding:18px 38px;
+    border-radius:50px;
+    color:white;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(194,155,23,.35);
+}
+
+.btn-primary:hover{
+    transform:translateY(-5px);
+    background:#aa8612;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+section{
+    padding:90px 8%;
+}
+
+h2{
+    font-family:'DM Sans', sans-serif;
+    font-size:2.7rem;
+    margin-bottom:25px;
+    text-align:center;
+    color:var(--color-texto);
+}
+
+h3{
+    font-family:'DM Sans', sans-serif;
+}
+
+/* =========================
+   PROPUESTA
+========================= */
+
+.grid-info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+.info-text{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+.info-text:hover{
+    transform:translateY(-8px);
+}
+
+.info-text p{
+    margin-top:15px;
+    color:var(--color-secundario);
+    line-height:1.8;
+}
+
+/* =========================
+   MODULOS
+========================= */
+
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    margin-top:50px;
+}
+
+.card{
+    background:white;
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.icon{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.card p{
+    margin-top:15px;
+    color:var(--color-secundario);
+    line-height:1.7;
+}
+
+/* =========================
+   CURSOS
+========================= */
+
+.catalogo-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:35px;
+    margin-top:50px;
+}
+
+.curso-card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.curso-card:hover{
+    transform:translateY(-10px);
+}
+
+.curso-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.curso-info{
+    padding:25px;
+}
+
+.curso-info p{
+    margin:15px 0;
+    color:var(--color-secundario);
+    line-height:1.6;
+}
+
+.curso-info button{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    background:var(--color-boton);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.curso-info button:hover{
+    background:#aa8612;
+}
+
+/* =========================
+   IMPACTO
+========================= */
+
+.glass-container{
+    background:rgba(255,255,255,.7);
+    backdrop-filter:blur(10px);
+    border-radius:30px;
+    padding:50px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:40px;
+}
+
+.stat-item{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.stat-item p{
+    margin-top:10px;
+    color:var(--color-secundario);
+}
+
+/* =========================
+   CHAT IA MEJORADO
+========================= */
+
+.chat-panel{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    width:380px;
+    height:580px;
+    background:white;
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+    display:none;
+    flex-direction:column;
+    z-index:1000;
+    border:2px solid rgba(194,155,23,.15);
+}
+
+.chat-panel.open{
+    display:flex;
+    animation:aparecer .4s ease;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.chat-header{
+    background:linear-gradient(135deg,var(--color-boton),#d4af37);
+    color:white;
+    padding:22px;
+    font-size:1.2rem;
+    font-weight:700;
+    text-align:center;
+    font-family:'DM Sans', sans-serif;
+}
+
+.chat-body{
+    flex:1;
+    padding:20px;
+    overflow-y:auto;
+    background:#faf8f3;
+}
+
+.msg{
+    margin-bottom:18px;
+    padding:14px 18px;
+    border-radius:18px;
+    max-width:85%;
+    line-height:1.5;
+    animation:fade .3s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.msg.ia{
+    background:white;
+    color:var(--color-texto);
+    border-bottom-left-radius:5px;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.msg.user{
+    background:var(--color-boton);
+    color:white;
+    margin-left:auto;
+    border-bottom-right-radius:5px;
+}
+
+.chat-footer{
+    display:flex;
+    gap:10px;
+    padding:18px;
+    background:white;
+    border-top:1px solid #eee;
+}
+
+.chat-footer input{
+    flex:1;
+    border:none;
+    background:#f3f3f3;
+    padding:14px;
+    border-radius:14px;
+    outline:none;
+    font-size:1rem;
+}
+
+.chat-footer button{
+    border:none;
+    background:var(--color-boton);
+    color:white;
+    padding:14px 22px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.3s;
+}
+
+.chat-footer button:hover{
+    transform:scale(1.05);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#e8dfcf;
+    padding:50px 8%;
+    text-align:center;
+    margin-top:80px;
+}
+
+.footer-logo{
+    font-size:2rem;
+    font-family:'DM Sans', sans-serif;
+    font-weight:700;
+}
+
+.footer-dev{
+    margin:20px 0;
+    color:var(--color-secundario);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .chat-panel{
+        width:95%;
+        right:2.5%;
+        bottom:15px;
+        height:80vh;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
 <header class="navbar">
     <div class="logo">🌿 EducaAcción</div>
+
     <nav>
-        <a href="loginfak.html" >Inicio</a>
-        <a href="#propuesta"   id="linkPropuesta">Propuesta</a>
-        <a href="cursos.html" id="linkPropuesta">Módulos</a>
+        <a href="#">Inicio</a>
+        <a href="#propuesta">Propuesta</a>
+        <a href="#modulos">Módulos</a>
         <a href="#alcance">Impacto</a>
-        <a href="loginfak.html" id="linkPropuesta">Contacto</a>
-        <a href="usuarios.html" >Usuarios</a>
+        <a href="#">Contacto</a>
+        <a href="#">Usuarios</a>
         <a href="#" id="chatToggle">Chat IA</a>
-        <a href="#" id="logoutBtn">Cerrar Sesión</a> <!-- 🔒 NUEVO -->
     </nav>
 </header>
 
 <main>
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Transformando Educación en Acción Ambiental</h1>
-            <p>Aprende, juega y genera impacto ecológico real a través de nuestra plataforma educativa inteligente.</p>
-            <button class="btn-primary">¡Únete al cambio!</button>
-        </div>
-    </section>
 
-    <section id="propuesta" class="info-section">
-        <div class="container">
-            <h2>¿Por qué nace EducaAcción?</h2>
-            <div class="grid-info">
-                <article class="info-text">
-                    <h3>El Desafío</h3>
-                    <p>Los métodos tradicionales a menudo separan la teoría de la práctica. En EducaAcción, resolvemos este problema vinculando el aprendizaje infantil con acciones reales en el entorno.</p>
-                </article>
-                <article class="info-text">
-                    <h3>Nuestra Misión</h3>
-                    <p>Fomentamos el aprendizaje activo y la responsabilidad ambiental desde edades tempranas, alineándonos con los <strong>Objetivos de Desarrollo Sostenible (ODS)</strong> para un futuro más verde.</p>
-                </article>
-            </div>
-        </div>
-    </section>
+<section class="hero">
 
-    <section id="modulos" class="modules">
-        <h2>Herramientas para un Futuro Sostenible</h2>
-        <div class="card-container">
-            <article class="card">
-                <div class="icon">📚</div>
-                <h3>Cursos Inteligentes</h3>
-                <p>Aprendizaje adaptativo con IA que evoluciona contigo, diseñando un camino educativo personalizado.</p>
-            </article>
+    <div class="hero-content">
 
-            <article class="card">
-                <div class="icon">🎮</div>
-                <h3>Gamificación Activa</h3>
-                <p>Gana puntos y desbloquea insignias mientras completas retos prácticos con objetos de tu hogar.</p>
-            </article>
+        <h1>Transformando Educación en Acción Ambiental</h1>
 
-           
-        </div>
-    </section>
+        <p>
+            Aprende, juega y genera impacto ecológico real
+            a través de una experiencia moderna impulsada con IA.
+        </p>
 
-    <section id="catalogo" class="catalogo-section">
-        <h2 class="catalogo-title">🎓 Explora Nuestros Cursos</h2>
-        <div class="catalogo-container">
+        <button class="btn-primary">
+            ¡Únete al cambio!
+        </button>
 
-            <!-- 🎵 ACORDEÓN -->
-            <div class="curso-card">
-                <img src="aordeon.jpeg">
-                <div class="curso-info">
-                    <h3>Acordeón</h3>
-                    <p>Aprende desde cero a tocar acordeón con ejercicios prácticos, ritmo y teoría musical básica.</p>
-                    <button>Comenzar</button>
-                </div>
-            </div>
+    </div>
 
-            <!-- 📚 ESPAÑOL -->
-            <div class="curso-card">
-                <img src="espanol.jpg">
-                <div class="curso-info">
-                    <h3>Español</h3>
-                    <p>Mejora tu ortografía, redacción y comprensión con actividades dinámicas y juegos.</p>
-                    <button>Comenzar</button>
-                </div>
-            </div>
+</section>
 
-            <!-- 🔢 MATEMÁTICAS -->
-            <div class="curso-card">
-                <img src="mate.jpeg">
-                <div class="curso-info">
-                    <h3>Matemáticas</h3>
-                    <p>Refuerza operaciones básicas, lógica y resolución de problemas con retos interactivos.</p>
-                    <button>Comenzar</button>
-                </div>
-            </div>
+<section id="propuesta">
 
-            <!-- 🏠 EN CASA -->
-            <div class="curso-card especial">
-                <img src="mecanografia.jpeg">
-                <div class="curso-info">
-                    <h3>Mecanografia</h3>
-                    <p>aprede a escribir rapido .</p>
-                    <button  onclick="">Explorar</button>
-                </div>
-            </div>
+    <h2>¿Por qué nace EducaAcción?</h2>
 
-        </div>
-    </section>
+    <div class="grid-info">
 
-    <section id="alcance" class="impact-section">
-        <div class="glass-container">
-            <h2>Impacto del Proyecto</h2>
-            <p>Basado en la metodología <strong>SCRUM</strong>, nuestro alcance se centra en la educación de calidad y el consumo responsable.</p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h4>IA Educativa</h4>
-                    <p>Contenido Adaptativo</p>
-                </div>
-                <div class="stat-item">
-                    <h4>Práctica Real</h4>
-                    <p>Retos en el Hogar</p>
-                </div>
-                <div class="stat-item">
-                    <h4>Sostenibilidad</h4>
-                    <p>Impacto Medible</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <article class="info-text">
+            <h3>🌎 El Desafío</h3>
+            <p>
+                Conectamos la teoría con acciones reales
+                para que el aprendizaje tenga impacto.
+            </p>
+        </article>
+
+        <article class="info-text">
+            <h3>🚀 Nuestra Misión</h3>
+            <p>
+                Crear una educación divertida,
+                ecológica y moderna para nuevas generaciones.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+<section id="modulos">
+
+    <h2>Herramientas Inteligentes</h2>
+
+    <div class="card-container">
+
+        <article class="card">
+            <div class="icon">📚</div>
+            <h3>Cursos Inteligentes</h3>
+            <p>
+                Aprendizaje adaptativo impulsado por IA.
+            </p>
+        </article>
+
+        <article class="card">
+            <div class="icon">🎮</div>
+            <h3>Gamificación</h3>
+            <p>
+                Aprende jugando y desbloquea recompensas.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+<section>
+
+<h2>🎓 Explora Nuestros Cursos</h2>
+
+<div class="catalogo-container">
+
+<div class="curso-card">
+<img src="aordeon.jpeg">
+<div class="curso-info">
+<h3>Acordeón</h3>
+<p>Aprende ritmo y teoría musical.</p>
+<button>Comenzar</button>
+</div>
+</div>
+
+<div class="curso-card">
+<img src="mate.jpeg">
+<div class="curso-info">
+<h3>Matemáticas</h3>
+<p>Resuelve retos interactivos.</p>
+<button>Comenzar</button>
+</div>
+</div>
+
+<div class="curso-card">
+<img src="espanol.jpg">
+<div class="curso-info">
+<h3>Español</h3>
+<p>Mejora tu lectura y escritura.</p>
+<button>Comenzar</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="alcance">
+
+<div class="glass-container">
+
+<h2>Impacto del Proyecto</h2>
+
+<div class="stats-grid">
+
+<div class="stat-item">
+<h3>🤖 IA Educativa</h3>
+<p>Contenido adaptativo</p>
+</div>
+
+<div class="stat-item">
+<h3>🏠 Retos Reales</h3>
+<p>Aprender haciendo</p>
+</div>
+
+<div class="stat-item">
+<h3>♻️ Sostenibilidad</h3>
+<p>Impacto positivo</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 </main>
 
-<footer id="contacto">
-    <div class="footer-content">
-        <div class="footer-logo">🌿 EducaAcción</div>
-        <div class="footer-dev">
-            <p><strong>Desarrollado por:</strong> Ramon Eduardo Ortiz Magaña</p>
-            <p>Matrícula: 22778 | Grupo: 8 C</p>
-        </div>
-        <p class="copyright">© 2026 EducaAcción | Proyecto Educativo de Impacto Ambiental</p>
-    </div>
+<footer>
 
-    <div class="chat-panel" id="chatPanel">
-        <div class="chat-header">🤖 Chat IA</div>
-        <div class="chat-body" id="chatBody">
-            <p><em>Bienvenido al chat con IA. Escribe tu mensaje abajo.</em></p>
-        </div>
-        <div class="chat-footer">
-            <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
-            <button id="sendBtn">Enviar</button>
-        </div>
-    </div>
+<div class="footer-logo">
+🌿 EducaAcción
+</div>
+
+<div class="footer-dev">
+<p>Desarrollado por Ramon Eduardo Ortiz Magaña</p>
+</div>
+
 </footer>
+
+<!-- CHAT IA -->
+
+<div class="chat-panel" id="chatPanel">
+
+<div class="chat-header">
+🤖 Asistente IA EducaAcción
+</div>
+
+<div class="chat-body" id="chatBody">
+
+<div class="msg ia">
+👋 Hola, soy tu asistente inteligente.
+</div>
+
+<div class="msg ia">
+Puedes preguntarme sobre cursos,
+matemáticas o retos educativos.
+</div>
+
+</div>
+
+<div class="chat-footer">
+
+<input
+type="text"
+id="chatInput"
+placeholder="Escribe tu mensaje..."
+>
+
+<button id="sendBtn">
+Enviar
+</button>
+
+</div>
+
+</div>
+
 <script>
-    function bloquearAcceso(bloquear){
 
-    const links = [
-        "linkPropuesta",
-        "linkModulos",
-        "linkImpacto",
-        "linkContacto",
-        "linkUsuarios"
-    ];
-
-    links.forEach(id=>{
-        const link = document.getElementById(id);
-
-        if(bloquear){
-            link.style.opacity = "0.5";
-            link.style.pointerEvents = "none"; // 🔒 bloquea click
-        }else{
-            link.style.opacity = "1";
-            link.style.pointerEvents = "auto";
-        }
-    });
-}
-
-
-
-onAuthStateChanged(auth, (user) => {
-    if(user){
-        usuarioActual = user;
-        nombreUsuario = user.displayName || user.email.split("@")[0];
-
-        bloquearAcceso(false); // ✅ desbloquea
-
-        console.log("Usuario:", nombreUsuario);
-    }else{
-        usuarioActual = null;
-        nombreUsuario = "";
-
-        bloquearAcceso(true); // 🔒 bloquea todo
-
-        console.log("No hay usuario logueado");
-    }
-});
-
-onAuthStateChanged(auth, (user) => {
-    if(user){
-        usuarioActual = user;
-        nombreUsuario = user.displayName || user.email.split("@")[0];
-
-        bloquearAcceso(false); // ✅ desbloquea
-
-        console.log("Usuario:", nombreUsuario);
-    }else{
-        usuarioActual = null;
-        nombreUsuario = "";
-
-        bloquearAcceso(true); // 🔒 bloquea todo
-
-        console.log("No hay usuario logueado");
-    }
-});
-
-</script>
-<script type="module">
-// 🔥 FIREBASE
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAG8y2Zo8z1Gd5S0SRujr2jyQDYZF2RCj8",
-  authDomain: "educaaccionedu.firebaseapp.com",
-  projectId: "educaaccionedu"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-// ELEMENTOS
 const chatToggle = document.getElementById("chatToggle");
 const chatPanel = document.getElementById("chatPanel");
-const chatBody = document.getElementById("chatBody");
-const chatInput = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
-const logoutBtn = document.getElementById("logoutBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBody = document.getElementById("chatBody");
 
-let usuarioActual = null;
-let nombreUsuario = "";
-
-// 🔥 DETECTAR USUARIO LOGUEADO
-onAuthStateChanged(auth, (user) => {
-    if(user){
-        usuarioActual = user;
-        nombreUsuario = user.displayName || user.email.split("@")[0];
-        console.log("Usuario:", nombreUsuario);
-    }else{
-        console.log("No hay usuario logueado");
-    }
-});
-
-// 🔥 ABRIR CHAT
-chatToggle.addEventListener("click", (e) => {
+chatToggle.addEventListener("click", (e)=>{
     e.preventDefault();
     chatPanel.classList.toggle("open");
-    iniciarChat();
 });
 
-// 🔥 INICIO
-function iniciarChat(){
-    if(usuarioActual){
-        mensajeIA(`¡Hola ${nombreUsuario}! 👋 Bienvenido a EducaAcción 🌿\nEscribe "jugar" para un reto 🎮`);
-    }else{
-        mensajeIA("⚠️ Debes iniciar sesión primero");
-    }
+function agregarMensaje(texto, tipo){
+
+    const div = document.createElement("div");
+
+    div.classList.add("msg");
+    div.classList.add(tipo);
+
+    div.innerHTML = texto;
+
+    chatBody.appendChild(div);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-// 🧠 IA PRO + JUEGO
-function generarRespuesta(msg){
+function responderIA(msg){
+
     msg = msg.toLowerCase();
 
-    if(!window.juego){
-        window.juego = {activo:false,paso:0,puntos:0,preguntas:[
-            {p:"¿2 + 2 es 4?", r:"si"},
-            {p:"¿El acordeón es un instrumento?", r:"si"},
-            {p:"¿5 es menor que 2?", r:"no"},
-            {p:"¿Leer mejora tu mente?", r:"si"},
-            {p:"¿El reciclaje ayuda al planeta?", r:"si"}
-        ]};
+    if(msg.includes("hola")){
+        return "👋 Hola, bienvenido a EducaAcción.";
     }
 
-    if(msg.includes("jugar") || msg.includes("reto")){
-        window.juego.activo = true;
-        window.juego.paso = 0;
-        window.juego.puntos = 0;
-        return `🎮 Vamos a jugar ${nombreUsuario} 😎 responde SI o NO\n👉 ${window.juego.preguntas[0].p}`;
+    if(msg.includes("curso")){
+        return "📚 Tenemos cursos de Matemáticas, Español y Música.";
     }
 
-    if(window.juego.activo){
-        const actual = window.juego.preguntas[window.juego.paso];
-        if(msg === actual.r) window.juego.puntos++;
-        window.juego.paso++;
-        if(window.juego.paso < 3){
-            return `👉 ${window.juego.preguntas[window.juego.paso].p}`;
-        }else{
-            window.juego.activo = false;
-            if(window.juego.puntos >= 2){
-                return `😂🔥 ${nombreUsuario} GANASTE 😎 eres inteligente 🧠💪`;
-            }else{
-                return `😅 ${nombreUsuario} perdiste... escribe "jugar" y te doy revancha 😈`;
-            }
-        }
+    if(msg.includes("mate")){
+        return "🧠 Las matemáticas son divertidas aquí 😎";
     }
 
-    if(msg.includes("hola") || msg.includes("buenas")) return `Hola ${nombreUsuario} 😄 ¿Quieres cursos o jugar? 🎮`;
-    if(msg.includes("curso")) return `${nombreUsuario}, tenemos:\n🎵 Acordeón\n📚 Español\n🔢 Matemáticas\n🏠 Creatividad`;
-    if(msg.includes("acordeon")) return `${nombreUsuario}, el acordeón es 🔥 puedo enseñarte canciones`;
-    if(msg.includes("mate")) return `${nombreUsuario}, te ayudo con ejercicios 🧠 escribe "jugar" para practicar`;
-    if(msg.includes("español")) return `${nombreUsuario}, mejoramos lectura y escritura 📖`;
-    if(msg.includes("casa") || msg.includes("creatividad")) return `${nombreUsuario}, puedes crear cosas con reciclaje ♻️`;
-    if(msg.includes("reciclaje")) return `${nombreUsuario}, cuidar el planeta es clave 🌍`;
-    if(msg.includes("gracias")) return `Para eso estoy ${nombreUsuario} 😎💚`;
+    if(msg.includes("ia")){
+        return "🤖 Estoy impulsado por inteligencia artificial.";
+    }
 
-    const respuestas = [
-        `${nombreUsuario}, interesante 🤔`,
-        `${nombreUsuario}, cuéntame más 😏`,
-        `${nombreUsuario}, prueba escribir "jugar" 🎮`,
-        `${nombreUsuario}, puedo ayudarte 😎`
-    ];
-    return respuestas[Math.floor(Math.random()*respuestas.length)];
+    return "✨ Interesante, cuéntame más.";
 }
 
-// 💬 MENSAJE IA
-async function mensajeIA(texto){
-    const typing = document.createElement("div");
-    typing.className = "msg ia";
-    typing.innerHTML = "🤖 escribiendo...";
-    chatBody.appendChild(typing);
-    chatBody.scrollTop = chatBody.scrollHeight;
-    await new Promise(r => setTimeout(r, 800));
-    typing.remove();
+sendBtn.addEventListener("click", ()=>{
 
-    const div = document.createElement("div");
-    div.className = "msg ia";
-    div.innerHTML = `🤖 ${texto}`;
-    chatBody.appendChild(div);
+    const texto = chatInput.value.trim();
 
-    if(usuarioActual){
-        await addDoc(collection(db, "chats"), {
-            uid: usuarioActual.uid,
-            usuario: nombreUsuario,
-            tipo: "ia",
-            mensaje: texto,
-            fecha: new Date()
-        });
-    }
-    chatBody.scrollTop = chatBody.scrollHeight;
-}
+    if(texto !== ""){
 
-// 💬 MENSAJE USUARIO
-async function mensajeUsuario(texto){
-    const div = document.createElement("div");
-    div.className = "msg user";
-    div.innerHTML = `👤 ${texto}`;
-    chatBody.appendChild(div);
+        agregarMensaje("👤 " + texto, "user");
 
-    if(usuarioActual){
-        await addDoc(collection(db, "chats"), {
-            uid: usuarioActual.uid,
-            usuario: nombreUsuario,
-            tipo: "user",
-            mensaje: texto,
-            fecha: new Date()
-        });
-    }
-}
-
-// 🚀 ENVIAR MENSAJE
-sendBtn.addEventListener("click", async () => {
-    const msg = chatInput.value.trim();
-    if(msg !== ""){
-        mensajeUsuario(msg);
         chatInput.value = "";
-        setTimeout(()=>{mensajeIA(generarRespuesta(msg));},500);
-    }
-});
-chatInput.addEventListener("keypress", (e)=>{if(e.key==="Enter") sendBtn.click();});
 
-// 🔒 CERRAR SESIÓN
-logoutBtn.addEventListener("click", async (e)=>{
-    e.preventDefault();
-    if(usuarioActual){
-        try{
-            await signOut(auth);
-            usuarioActual=null;
-            nombreUsuario="";
-            mensajeIA("⚠️ Has cerrado sesión. Vuelve pronto 😎");
-            chatPanel.classList.remove("open");
-            console.log("Usuario ha cerrado sesión");
-        }catch(err){
-            console.error("Error al cerrar sesión:", err);
-            mensajeIA("⚠️ Error al cerrar sesión, intenta de nuevo.");
-        }
-    }else{
-        mensajeIA("⚠️ No hay usuario logueado");
+        setTimeout(()=>{
+
+            agregarMensaje(
+                "🤖 " + responderIA(texto),
+                "ia"
+            );
+
+        },700);
     }
 });
+
+chatInput.addEventListener("keypress", (e)=>{
+    if(e.key === "Enter"){
+        sendBtn.click();
+    }
+});
+
 </script>
 
 </body>

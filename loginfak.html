@@ -3,53 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel ="stylesheet" href = "estilologin.css"> 
 <title>Login Firebase 🔥</title>
 
-<style>
-body{
-  font-family: Arial;
-  background:#0f2027;
-  color:white;
-  text-align:center;
-}
-
-.container{
-  margin-top:50px;
-}
-
-input{
-  display:block;
-  margin:10px auto;
-  padding:10px;
-  border-radius:8px;
-  border:none;
-  width:250px;
-}
-
-button{
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  background:#22c55e;
-  color:white;
-  cursor:pointer;
-}
-
-.hidden{
-  display:none;
-}
-
-#passwordHelp{
-  font-size:12px;
-  opacity:0.7;
-}
-
-.toggle-pass{
-  cursor:pointer;
-  font-size:12px;
-  color:#4ade80;
-}
-</style>
 
 </head>
 <body>
@@ -88,6 +44,8 @@ button{
 <span class="toggle-pass" onclick="togglePassword('loginPassword')">👁 Mostrar</span>
 
 <button onclick="signIn()">Entrar</button>
+<button onclick="resetPassword()">¿Olvidaste tu contraseña?</button>
+<button onclick="reenviarVerificacion()">Reenviar verificación de correo</button>
 
 <p>¿No tienes cuenta? 
 <a href="#" onclick="toggleForms()">Registro</a>
@@ -96,119 +54,6 @@ button{
 
 </div>
 
-<script type="module">
-// 🔥 IMPORTS
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
-
-import { getFirestore, doc, setDoc } 
-from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
-
-// 🔥 CONFIG
-const firebaseConfig = {
-  apiKey: "AIzaSyAG8y2Zo8z1Gd5S0SRujr2jyQDYZF2RCj8",
-  authDomain: "educaaccionedu.firebaseapp.com",
-  projectId: "educaaccionedu",
-  storageBucket: "educaaccionedu.firebasestorage.app",
-  messagingSenderId: "660080325935",
-  appId: "1:660080325935:web:1487f838c86a2ac4835dda"
-};
-
-// INIT
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// 🔁 CAMBIAR FORMULARIOS
-window.toggleForms = function(){
-  document.getElementById("registerForm").classList.toggle("hidden");
-  document.getElementById("loginForm").classList.toggle("hidden");
-}
-
-// 🔐 VALIDAR PASSWORD
-function validarPassword(password){
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#_-])[A-Za-z\d@$!%*?&.#_-]{8,}$/;
-  return regex.test(password);
-}
-
-// 👁 MOSTRAR/OCULTAR PASSWORD
-window.togglePassword = function(id){
-  const input = document.getElementById(id);
-  input.type = input.type === "password" ? "text" : "password";
-}
-
-// ✅ REGISTRO
-window.registerUser = async () => {
-  const email = document.getElementById("registerEmail").value;
-  const password = document.getElementById("registerPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-
-  if(password !== confirmPassword){
-    alert("❌ Las contraseñas no coinciden");
-    return;
-  }
-
-  if(!validarPassword(password)){
-    alert("❌ Contraseña insegura.\nDebe tener mayúscula, minúscula, número y símbolo.");
-    return;
-  }
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    await setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-      createdAt: new Date()
-    });
-
-    alert("✅ Usuario registrado correctamente");
-    // Redirigir al login
-    toggleForms();
-
-  } catch (error) {
-    alert("❌ " + error.message);
-  }
-};
-
-// ✅ LOGIN
-window.signIn = async () => {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    alert("🚀 Login exitoso");
-    // Redirigir después de login exitoso
-    window.location.href = "inicio1i.html";
-
-  } catch (error) {
-    alert("❌ " + error.message);
-  }
-};
-
-// ⚡ DETECTAR USUARIO YA LOGUEADO
-onAuthStateChanged(auth, (user) => {
-  if(user){
-    // Si ya está logueado, lo llevamos directo al inicio
-    window.location.href = "inicio1i.html";
-  }
-});
-
-// ⚡ VALIDACIÓN EN TIEMPO REAL
-const passInput = document.getElementById("registerPassword");
-const helpText = document.getElementById("passwordHelp");
-
-passInput.addEventListener("input", () => {
-  if(validarPassword(passInput.value)){
-    helpText.style.color = "#22c55e";
-    helpText.textContent = "✅ Contraseña segura";
-  } else {
-    helpText.style.color = "red";
-    helpText.textContent = "❌ Debe tener mayúscula, minúscula, número y símbolo";
-  }
-});
-</script>
+<script src="firelogin.js"> </script>
 </body>
 </html>
